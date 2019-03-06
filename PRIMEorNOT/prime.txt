@@ -1,0 +1,60 @@
+.model small
+
+.data 
+m1 db 10,13,'enter a number$'
+m2 db 10,13,'prime$'
+m3 db 10,13,'not prime$'
+n1 db ?
+count db 00h
+
+.code
+
+mov ax,@data
+mov ds,ax
+lea dx,m1
+mov ah,09h
+int 21h
+mov ah,01h
+int 21h
+sub al,30h
+
+mov bh,al
+mov ah,01h
+int 21h
+sub al,30h
+mov ah,bh
+aad
+
+mov cl,al
+mov ch,00h
+mov bl,01h
+mov n1,al
+
+l3:mov ah,00h
+div bl
+cmp ah,00h
+jz l1
+jmp l2
+
+l1:inc count
+
+l2:inc bl
+mov al,n1
+dec cx
+jnz l3
+
+cmp count,02h
+jz l4
+lea dx,m3
+mov ah,09h
+int 21h
+jmp exit
+
+l4:lea dx,m2
+mov ah,09h
+int 21h
+
+exit:mov ah,4ch
+int 21h
+
+end
