@@ -11,14 +11,16 @@ count db 00h
 
 mov ax,@data
 mov ds,ax
+
 lea dx,m1
 mov ah,09h
 int 21h
 mov ah,01h
 int 21h
-sub al,30h
 
+sub al,30h
 mov bh,al
+
 mov ah,01h
 int 21h
 sub al,30h
