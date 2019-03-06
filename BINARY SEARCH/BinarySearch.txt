@@ -11,6 +11,7 @@ key db 40d
 
 mov ax,@data 
 mov ds,ax
+
 mov ax,0600h
 mov bh,07h
 mov cx,0000h
